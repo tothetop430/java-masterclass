@@ -4,11 +4,13 @@ public class Hello {
         System.out.println("Hello World");
         System.out.println("Hello Siddharth");
 
-        int myFirstNumber = 5;
+        int myFirstNumber = (5 + 10) + (2 * 10);
+        int mySecondNumber = 12;
+        int myThirdNumber = myFirstNumber * 2;
+        int myTotal = myFirstNumber + mySecondNumber + myThirdNumber;
+        System.out.println(myTotal);
 
-        System.out.println(myFirstNumber);
-
-        int expression = (10 + 5) + (2 * 10);
-        System.out.println(expression);
+        int myLastOne = 1000 - myTotal;
+        System.out.println(myLastOne);
     }
 }
