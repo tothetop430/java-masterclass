@@ -34,5 +34,23 @@ public class Main {
         System.out.println("Minimum Long Value = " + minLongValue);
         System.out.println("Maximum Long Value = " + maxLongValue);
 
+        byte newByteValue = (byte)(minByteValue / 2);
+        short newShortValue = (short)(minShortValue / 2);
+
+        System.out.println(newByteValue);
+        System.out.println(newShortValue);
+
+        // Challenge
+
+        byte byteValue = 10;
+        short shortValue = 10;
+        int intValue = 10;
+        long totalLongValue = 50000L + 10L * (byteValue + shortValue + intValue);
+
+        System.out.println(totalLongValue);
+
+        short shortTotalValue = (short)(1000 + 10 * (byteValue + shortValue + intValue));
+        System.out.println(shortTotalValue);
+
     }
 }
