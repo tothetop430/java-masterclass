@@ -39,5 +39,16 @@ public class Main {
             System.out.println("It is not an Alien");
             System.out.println("But Aliens are out there!");
         }
+
+        //challenge
+
+        double value20 = 20;
+        double value80 = 80;
+        double sumTog = (value20 + value80)*100;
+        double rem = sumTog % 41;
+        boolean boolRes = rem == 0;
+        System.out.println(boolRes);
+        if (!boolRes)
+            System.out.println("Got some remainder");
     }
 }
