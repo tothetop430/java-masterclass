@@ -33,5 +33,11 @@ public class Main {
         System.out.println(result);
         result %= 3;
         System.out.println(result);
+
+        boolean isAlien = false;
+        if (!isAlien) {
+            System.out.println("It is not an Alien");
+            System.out.println("But Aliens are out there!");
+        }
     }
 }
