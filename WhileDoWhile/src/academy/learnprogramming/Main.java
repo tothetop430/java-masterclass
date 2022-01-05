@@ -23,11 +23,15 @@ public class Main {
 
         int number = 4;
         int finalNumber = 20;
+        int count = 0;
         while (number <= finalNumber) {
             number++;
             if(!isEvenNumber(number)) continue;
+            count++;
             System.out.println("Found Even Number is " + number);
+            if (count == 5) break;
         }
+        System.out.println("Total Even Numbers Found are " + count);
 
     }
 
