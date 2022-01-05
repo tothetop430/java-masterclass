@@ -13,5 +13,4 @@ public class NumberPalindrome {
         }
         return Math.abs(number) == reversed;
     }
-
 }
