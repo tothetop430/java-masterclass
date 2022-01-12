@@ -22,6 +22,9 @@ public class Main {
         setElement(1, "Anything");
 
         printElements();
+
+        System.out.println(hasElement("apple"));
+        System.out.println(findElement("Anything") + 1);
     }
 
     private static void addElement(String name) {
@@ -44,5 +47,13 @@ public class Main {
         for(int i=0; i<getSize(); i++) {
             System.out.println("Element " + (i+1) + " is " + groceryList.get(i));
         }
+    }
+
+    private static int findElement(String elem) {
+        return groceryList.indexOf(elem);
+    }
+
+    private static boolean hasElement(String elem) {
+        return groceryList.contains(elem);
     }
 }
