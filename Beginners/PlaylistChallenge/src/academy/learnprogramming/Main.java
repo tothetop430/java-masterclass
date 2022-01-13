@@ -120,6 +120,12 @@ public class Main {
             }
             else if (choice == 5) {
                 i.remove();
+                if(i.hasNext()) System.out.println("Playing Next Song -> " + i.next().toString());
+                else if(i.hasPrevious()) System.out.println("Playing Previous Song -> " + i.previous().toString());
+                else {
+                    System.out.println("Playlist Empty");
+                    quit = true;
+                }
                 printMenu();
             }
         }
