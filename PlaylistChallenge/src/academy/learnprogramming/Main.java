@@ -55,7 +55,7 @@ public class Main {
             return false;
         }
         else {
-            System.out.println("Playing First Song on Playlist -> " + playlist.getFirst().getTitle());
+            System.out.println("Playing First Song on Playlist -> " + playlist.getFirst().toString());
             i.next();
         }
         Scanner scanner = new Scanner(System.in);
@@ -75,7 +75,7 @@ public class Main {
                     fwd = true;
                 }
                 if (i.hasNext()) {
-                    System.out.println("Playing Next Song -> " + i.next().getTitle());
+                    System.out.println("Playing Next Song -> " + i.next().toString());
                 } else {
                     System.out.println("No Next Song... Quitting");
                     quit = true;
@@ -87,7 +87,7 @@ public class Main {
                     fwd = false;
                 }
                 if (i.hasPrevious()) {
-                    System.out.println("Playing Previous Song -> " + i.previous().getTitle());
+                    System.out.println("Playing Previous Song -> " + i.previous().toString());
                 } else {
                     System.out.println("No Previous Song... Quitting");
                     quit = true;
@@ -95,18 +95,20 @@ public class Main {
             }
             else if (choice == 3) {
                 if (fwd) {
+//                    if (!i.hasPrevious()) i.next(); // not needed
                     i.previous();
                     if (i.hasNext()) {
-                        System.out.println("Replaying the current song -> " + i.next().getTitle());
+                        System.out.println("Replaying the current song -> " + i.next().toString());
                     } else {
                         System.out.println("Couldn't replay the song...Quitting");
                         quit = true;
                     }
                 }
                 else {
+//                    if (!i.hasNext()) i.previous(); // not needed
                     i.next();
                     if (i.hasPrevious()) {
-                        System.out.println("Replaying the current song -> " + i.previous().getTitle());
+                        System.out.println("Replaying the current song -> " + i.previous().toString());
                     } else {
                         System.out.println("Couldn't replay the song...Quitting");
                         quit = true;
