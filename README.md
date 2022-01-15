@@ -1,2 +1,2 @@
 # java-masterclass
-Learning Java from [course](https://www.udemy.com/course/java-the-complete-java-developer-course/).
+Learning Java from [this](https://www.udemy.com/course/java-the-complete-java-developer-course/) course.
