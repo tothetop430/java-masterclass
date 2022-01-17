@@ -24,5 +24,4 @@ public class LeagueTable<T extends Team> {
             System.out.println(t.getName() + " -> " + t.ranking());
         }
     }
-
 }
