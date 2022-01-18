@@ -1,6 +1,6 @@
 package learning;
 
-// import org.w3c.dom.Node;  // --> needed only if we are not using fully qualified names.
+import org.w3c.dom.Node;  // --> needed only if we are not using fully qualified names.
 
 public class Main {
 
