@@ -5,7 +5,7 @@ package learning;
 public class Main {
 
     public static void main(String[] args) {
-        org.w3c.dom.Node node = new org.w3c.dom.Node();     // showing error because Node is an Interface
+        //org.w3c.dom.Node node = new org.w3c.dom.Node();     // showing error because Node is an Interface
 
         /*
 
