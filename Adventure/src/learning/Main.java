@@ -16,17 +16,45 @@ public class Main {
         locationMap.put(4, new Location(4, "At Location 4"));
         locationMap.put(5, new Location(5, "At Location 5"));
 
+        // Exits for location 1
+        locationMap.get(1).addExit("N", 5);
+        locationMap.get(1).addExit("S", 4);
+        locationMap.get(1).addExit("E", 3);
+        locationMap.get(1).addExit("W", 2);
+
+        // Exits for location 2
+        locationMap.get(2).addExit("N", 5);
+
+        // Exits for location 3
+        locationMap.get(3).addExit("W", 1);
+
+        // Exits for location 4
+        locationMap.get(4).addExit("W", 2);
+        locationMap.get(4).addExit("N", 1);
+
+        // Exits for location 5
+        locationMap.get(5).addExit("S", 1);
+        locationMap.get(5).addExit("W", 2);
+
+        int loc = 1;
         while(true) {
-            int loc = scanner.nextInt();
-            if (!locationMap.containsKey(loc)) {
-                System.out.println(loc + " is not present on the map, try again.");
-                continue;
-            }
             System.out.println("You are at " + locationMap.get(loc).getLocation());
             if (loc == 0) {
                 System.out.println("breaking out of the loop");
                 break;
             }
+
+            Map<String, Integer> exits = locationMap.get(loc).getExits();
+            System.out.print("Available Exits are: ");
+            for (String exit: exits.keySet()) {
+                System.out.print(exit + ", ");
+            }
+            System.out.print("\nSelect your exit: ");
+            String choice = scanner.nextLine().toUpperCase();
+            if (!exits.containsKey(choice)) {
+                System.out.println("Selected direction " + choice + " is not present.");
+            }
+            else loc = exits.get(choice);
         }
     }
 }
