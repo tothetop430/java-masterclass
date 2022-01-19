@@ -60,8 +60,7 @@ public class Main {
                 .replace(',', ' ')
                 .toLowerCase()
                 .split(" ");
-        String choice = "";
-
+        String choice = words[0];
         label:
         for (String word: words) {
             switch (word) {
@@ -83,6 +82,6 @@ public class Main {
             }
         }
 
-        return choice;
+        return choice.toUpperCase();
     }
 }
