@@ -1,14 +1,10 @@
 package learning;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     private static final Map<Integer, Location> locationMap = new HashMap<>();
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
         locationMap.put(0, new Location(0, "At Location 0"));
         locationMap.put(1, new Location(1, "At Location 1"));
         locationMap.put(2, new Location(2, "At Location 2"));
@@ -50,11 +46,43 @@ public class Main {
                 System.out.print(exit + ", ");
             }
             System.out.print("\nSelect your exit: ");
-            String choice = scanner.nextLine().toUpperCase();
+            String choice = getChoice();
             if (!exits.containsKey(choice)) {
                 System.out.println("Selected direction " + choice + " is not present.");
             }
             else loc = exits.get(choice);
         }
+    }
+
+    private static String getChoice() {
+        Scanner scanner = new Scanner(System.in);
+        String[] words = scanner.nextLine()
+                .replace(',', ' ')
+                .toLowerCase()
+                .split(" ");
+        String choice = "";
+
+        label:
+        for (String word: words) {
+            switch (word) {
+                case "north":
+                    choice = "N";
+                    break label;
+                case "south":
+                    choice = "S";
+                    break label;
+                case "east":
+                    choice = "E";
+                    break label;
+                case "west":
+                    choice = "W";
+                    break label;
+                case "quit":
+                    choice = "Q";
+                    break label;
+            }
+        }
+
+        return choice;
     }
 }
