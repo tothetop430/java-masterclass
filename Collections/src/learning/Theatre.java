@@ -1,11 +1,10 @@
 package learning;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Theatre {
 
-    private static class Seat {
+    private static class Seat implements Comparable<Seat> {
         private final String seatNum;
         private boolean reserved;
         public Seat(String seatNum) {
@@ -41,6 +40,11 @@ public class Theatre {
             }
 
         }
+
+        @Override
+        public int compareTo(Seat seat) {
+            return this.seatNum.compareToIgnoreCase(seat.seatNum);
+        }
     }
 
     private final String theatreName;
@@ -63,19 +67,13 @@ public class Theatre {
     }
 
     public boolean reserveSeat(String seatNumber) {
-        Seat reservedSeat = null;
-        for (Seat seat : seats) {
-            if (seat.getSeatNum().equals(seatNumber)) {
-                reservedSeat = seat;
-                break;
-            }
-        }
-
-        if (reservedSeat == null) {
+        Seat toReserve = new Seat(seatNumber);
+        int foundSeat = Collections.binarySearch(seats, toReserve, null);
+        if (foundSeat >= 0) return toReserve.reserve();
+        else {
             System.out.println("Can not find seat "+ seatNumber + " to reserve");
             return false;
         }
-        return reservedSeat.reserve();
     }
 
     public boolean cancelSeat(String seatNumber) {
@@ -93,5 +91,4 @@ public class Theatre {
             System.out.println("Seat -> " + seat.getSeatNum());
         }
     }
-
 }
