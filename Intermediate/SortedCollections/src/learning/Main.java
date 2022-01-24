@@ -3,7 +3,7 @@ package learning;
 public class Main {
 
     private static final StockList stockList = new StockList();
-    private static final Basket basket = new Basket("Fruits");
+    private static final Basket basket = new Basket();
     public static void main(String[] args) {
         StockItem temp = new StockItem("item1", 1, 2);
         stockList.addStock(temp);

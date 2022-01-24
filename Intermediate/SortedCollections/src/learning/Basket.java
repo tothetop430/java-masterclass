@@ -1,39 +1,30 @@
 package learning;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Basket {
 
-    private final String name;
     private final Map<StockItem, Integer> list;
 
-    public Basket(String name) {
-        this.name = name;
+    public Basket() {
         this.list = new HashMap<>();
     }
 
-    public int addToBasket(StockItem item, int qty) {
+    public void addToBasket(StockItem item, int qty) {
         if (item != null && qty > 0) {
             int inBasket = this.list.getOrDefault(item, 0);
             this.list.put(item, inBasket + qty);
-            return inBasket + qty;
         }
-        return 0;
-    }
-
-    public Map<StockItem, Integer> getItems() {
-        return Collections.unmodifiableMap(this.list);
     }
 
     @Override
     public String toString() {
-        String basketList = "";
+        StringBuilder basketList = new StringBuilder();
         for (Map.Entry<StockItem, Integer> item: list.entrySet()) {
-            basketList += item.getKey() + " purchasing -> " + item.getValue() + "\n";
-            basketList += "Total Price: " + item.getKey().getPrice() * item.getValue() + "\n";
+            basketList.append(item.getKey()).append(" purchasing -> ").append(item.getValue()).append("\n");
+            basketList.append("Total Price: ").append(item.getKey().getPrice() * item.getValue()).append("\n");
         }
-        return basketList;
+        return basketList.toString();
     }
 }

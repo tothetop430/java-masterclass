@@ -7,13 +7,6 @@ public class StockItem implements Comparable<StockItem> {
     private int quantity;
     private int reserved;
 
-    public StockItem(String name, double price) {
-        this.name = name;
-        this.price = price;
-        this.quantity = 0;
-        this.reserved = 0;
-    }
-
     public StockItem(String name, double price, int quantity) {
         this.name = name;
         this.price = price;
@@ -55,10 +48,6 @@ public class StockItem implements Comparable<StockItem> {
             return qty;
         }
         return 0;
-    }
-
-    public void setPrice(double price) {
-        if (price > 0.0) this.price = price;
     }
 
     public void adjustQuantity(int quantity) {
