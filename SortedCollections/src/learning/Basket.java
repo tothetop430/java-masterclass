@@ -32,7 +32,7 @@ public class Basket {
         String basketList = "";
         for (Map.Entry<StockItem, Integer> item: list.entrySet()) {
             basketList += item.getKey() + " purchasing -> " + item.getValue() + "\n";
-            basketList += "Total Price: " + item.getKey().getPrice() * item.getValue();
+            basketList += "Total Price: " + item.getKey().getPrice() * item.getValue() + "\n";
         }
         return basketList;
     }
