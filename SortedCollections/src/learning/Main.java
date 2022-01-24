@@ -35,6 +35,5 @@ public class Main {
         System.out.println(basket);
 
         System.out.println(stockList.getItems());
-
     }
 }

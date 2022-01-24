@@ -18,7 +18,7 @@ public class Basket {
         if (item != null && qty > 0) {
             int inBasket = this.list.getOrDefault(item, 0);
             this.list.put(item, inBasket + qty);
-            return inBasket;
+            return inBasket + qty;
         }
         return 0;
     }

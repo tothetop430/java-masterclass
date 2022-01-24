@@ -26,7 +26,7 @@ public class StockList {
         StockItem inStock = this.list.getOrDefault(itemName, null);
         if (inStock != null && qty > 0 && inStock.getQuantity() >= qty) {
             inStock.adjustQuantity(-1 * qty);
-            return inStock.getQuantity();
+            return qty;
         }
         return 0;
     }
