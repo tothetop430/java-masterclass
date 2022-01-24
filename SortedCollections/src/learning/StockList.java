@@ -46,7 +46,7 @@ public class StockList {
             itemList += this.list.get(itemName);
             itemList += "Total Price for " + itemName + " with " + this.list.get(itemName).getQuantity() +
                     " qty. is " + (this.list.get(itemName).getQuantity() *
-                    this.list.get(itemName).getPrice());
+                    this.list.get(itemName).getPrice()) + "\n";
         }
         return itemList;
     }
