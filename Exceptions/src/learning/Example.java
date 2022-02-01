@@ -7,13 +7,13 @@ import java.util.Scanner;
 public class Example {
 
     public static void main(String[] args) {
-//        int res;
-//        try {
-//            res = divide();
-//        } catch (ArithmeticException e) {
-//            res = 0;
-//        }
-//        System.out.println("Result is " + res);
+        int res;
+        try {
+            res = divide();
+        } catch (ArithmeticException e) {
+            res = 0;
+        }
+        System.out.println("Result is " + res);
     }
 
     private static int divide() {
