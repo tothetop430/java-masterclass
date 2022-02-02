@@ -1,5 +1,7 @@
 package learning;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,6 +9,30 @@ import java.util.Set;
 
 public class Locations implements Map<Integer, Location> {
     private static final Map<Integer, Location> locations = new HashMap<>();
+
+    public static void main(String[] args) {
+        FileWriter locFile = null;
+        try {
+            locFile = new FileWriter("locations.txt");
+            for (Location loc : locations.values()) {
+                locFile.write(loc.getLocationID() + ", " + loc.getDescription() + "\n");
+            }
+        } catch (IOException e) {
+            System.out.println("Caught Exception");
+            e.printStackTrace();
+        } finally {
+            System.out.println("Inside Finally Block");
+            try {
+                if (locFile != null) {
+                    System.out.println("Closing File");
+                    locFile.close();
+                }
+            } catch (IOException e) {
+                System.out.println("Inside Finally Caught Exception");
+                e.printStackTrace();
+            }
+        }
+    }
 
     static {
         Map<String, Integer> tempExit;
