@@ -10,7 +10,8 @@ public class Example {
         int res;
         try {
             res = divide();
-        } catch (ArithmeticException e) {
+        } catch (ArithmeticException | NoSuchElementException e) {
+            System.out.println("Exception Raised " + e);
             res = 0;
         }
         System.out.println("Result is " + res);
@@ -19,13 +20,11 @@ public class Example {
     private static int divide() {
         int x, y;
         try {
-            x = getInt();
-            y = getInt();
+        x = getInt();
+        y = getInt();
+        return x / y;
         } catch (NoSuchElementException e) {
-            throw new ArithmeticException("No Element Found");
-        }
-        try {
-            return x / y;
+            throw new NoSuchElementException("No Element Found");
         } catch (ArithmeticException e) {
             throw new ArithmeticException("Divide By Zero");
         }
