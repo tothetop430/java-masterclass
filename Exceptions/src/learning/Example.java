@@ -19,15 +19,15 @@ public class Example {
 
     private static int divide() {
         int x, y;
-        try {
+//        try {
         x = getInt();
         y = getInt();
         return x / y;
-        } catch (NoSuchElementException e) {
-            throw new NoSuchElementException("No Element Found");
-        } catch (ArithmeticException e) {
-            throw new ArithmeticException("Divide By Zero");
-        }
+//        } catch (NoSuchElementException e) {
+//            throw new NoSuchElementException("No Element Found");
+//        } catch (ArithmeticException e) {
+//            throw new ArithmeticException("Divide By Zero");
+//        }
     }
 
     private static int getInt() {
