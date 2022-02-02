@@ -19,15 +19,9 @@ public class Example {
 
     private static int divide() {
         int x, y;
-//        try {
         x = getInt();
         y = getInt();
         return x / y;
-//        } catch (NoSuchElementException e) {
-//            throw new NoSuchElementException("No Element Found");
-//        } catch (ArithmeticException e) {
-//            throw new ArithmeticException("Divide By Zero");
-//        }
     }
 
     private static int getInt() {
@@ -37,7 +31,7 @@ public class Example {
                 return scanner.nextInt();
             } catch (InputMismatchException e) {
                 scanner.nextLine();
-                System.out.println("Please enter number again: ");
+                System.out.println("Please enter a number from 0 to 9: ");
             }
         }
     }
