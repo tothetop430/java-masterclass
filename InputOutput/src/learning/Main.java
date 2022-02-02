@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-    private static Locations locations = new Locations();
+    private static final Locations locations = new Locations();
 
     public static void main(String[] args) {
         // Change the program to allow players to type full words, or phrases, then move to the
@@ -18,13 +18,12 @@ public class Main {
 
 	    Scanner scanner = new Scanner(System.in);
 
-        Map<String, String> vocabulary = new HashMap<String, String>();
+        Map<String, String> vocabulary = new HashMap<>();
         vocabulary.put("QUIT", "Q");
         vocabulary.put("NORTH", "N");
         vocabulary.put("SOUTH", "S");
         vocabulary.put("WEST", "W");
         vocabulary.put("EAST", "E");
-
 
         int loc = 1;
         while(true) {
@@ -51,7 +50,6 @@ public class Main {
                     }
                 }
             }
-
             if(exits.containsKey(direction)) {
                 loc = exits.get(direction);
 
@@ -59,6 +57,5 @@ public class Main {
                 System.out.println("You cannot go in that direction");
             }
         }
-
     }
 }
