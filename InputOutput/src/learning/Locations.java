@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 public class Locations implements Map<Integer, Location> {
-    private static final Map<Integer, Location> locations = new HashMap<>();
+    private static final Map<Integer, Location> locations = new LinkedHashMap<>();
 
     public static void main(String[] args) throws IOException {
         try (BufferedWriter locFile = new BufferedWriter(new FileWriter("locations.txt"));
@@ -12,8 +12,10 @@ public class Locations implements Map<Integer, Location> {
             for (Location loc : locations.values()) {
                 locFile.write(loc.getLocationID() + "," + loc.getDescription() + "\n");
                 for (String dir : loc.getExits().keySet()) {
-                    dirFile.write(loc.getLocationID() + "," + dir + "," +
-                            loc.getExits().get(dir) + "\n");
+                    if (!dir.equalsIgnoreCase("Q")) {
+                        dirFile.write(loc.getLocationID() + "," + dir + "," +
+                                loc.getExits().get(dir) + "\n");
+                    }
                 }
             }
         }
