@@ -7,6 +7,7 @@ public class Locations implements Map<Integer, Location> {
     private static final Map<Integer, Location> locations = new LinkedHashMap<>();
 
     public static void main(String[] args) throws IOException {
+        // Using DataOutputStream
         try (DataOutputStream locFile = new DataOutputStream(
                 new BufferedOutputStream(new FileOutputStream("locations.dat")))) {
             for (Location location : locations.values()) {
@@ -29,27 +30,34 @@ public class Locations implements Map<Integer, Location> {
 
     static {
 
+        // Using DataInputStream
         try (DataInputStream locFile = new DataInputStream(
                 new BufferedInputStream(new FileInputStream("locations.dat")))) {
-            while(true) {
-                Map<String, Integer> exits = new LinkedHashMap<>();
-                int locId = locFile.readInt();
-                String description = locFile.readUTF();
-                int totalExits = locFile.readInt();
-                System.out.println("Reading location : " + locId + " : " + description);
-                System.out.println("Reading " + totalExits + " exits.");
-                for (int i=0; i<totalExits; i++) {
-                    String direction = locFile.readUTF();
-                    int destination = locFile.readInt();
-                    exits.put(direction, destination);
-                    System.out.println("\t\t" + direction + "--" + destination);
+            boolean eof = false;
+            while(!eof) {
+                try {
+                    Map<String, Integer> exits = new LinkedHashMap<>();
+                    int locId = locFile.readInt();
+                    String description = locFile.readUTF();
+                    int totalExits = locFile.readInt();
+                    System.out.println("Reading location : " + locId + " : " + description);
+                    System.out.println("Reading " + totalExits + " exits.");
+                    for (int i = 0; i < totalExits; i++) {
+                        String direction = locFile.readUTF();
+                        int destination = locFile.readInt();
+                        exits.put(direction, destination);
+                        System.out.println("\t\t" + direction + "--" + destination);
+                    }
+                    locations.put(locId, new Location(locId, description, exits));
+                } catch (EOFException e) {
+                    eof = true;
                 }
-                locations.put(locId, new Location(locId, description, exits));
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        // Using BufferedReader
 //        try (BufferedReader locFile = new BufferedReader(new FileReader("locations_big.txt"))) {
 //            String input;
 //            while((input = locFile.readLine()) != null) {
