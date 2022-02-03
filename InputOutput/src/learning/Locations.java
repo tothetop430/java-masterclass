@@ -54,6 +54,7 @@ public class Locations implements Map<Integer, Location> {
                 }
             }
         } catch (IOException e) {
+            System.out.println("Caught IOException other than EOFException");
             e.printStackTrace();
         }
 
