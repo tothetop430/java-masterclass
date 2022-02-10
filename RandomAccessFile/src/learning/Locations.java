@@ -90,6 +90,10 @@ public class Locations implements Map<Integer, Location> {
         return location;
     }
 
+    public void close() throws IOException {
+        ra.close();
+    }
+
     @Override
     public int size() {
         return locations.size();
@@ -149,9 +153,5 @@ public class Locations implements Map<Integer, Location> {
     @Override
     public Set<Entry<Integer, Location>> entrySet() {
         return locations.entrySet();
-    }
-
-    public void close() throws IOException {
-        ra.close();
     }
 }
