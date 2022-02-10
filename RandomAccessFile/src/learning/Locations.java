@@ -30,7 +30,6 @@ public class Locations implements Map<Integer, Location> {
                         builder.append(direction);
                         builder.append(",");
                         builder.append(location.getExits().get(direction));
-                        builder.append(",");
                     }
                 }
                 rao.writeUTF(builder.toString());
