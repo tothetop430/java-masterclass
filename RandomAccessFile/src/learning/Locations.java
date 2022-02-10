@@ -4,8 +4,8 @@ import java.io.*;
 import java.util.*;
 
 public class Locations implements Map<Integer, Location> {
-    private static Map<Integer, Location> locations = new LinkedHashMap<Integer, Location>();
-    private static Map<Integer, IndexRecord> index = new LinkedHashMap<>();
+    private static final Map<Integer, Location> locations = new LinkedHashMap<>();
+    private static final Map<Integer, IndexRecord> index = new LinkedHashMap<>();
     private static RandomAccessFile ra;
 
     public static void main(String[] args) throws IOException {
@@ -40,16 +40,13 @@ public class Locations implements Map<Integer, Location> {
 
                 startPointer = (int) rao.getFilePointer();
             }
-
             rao.seek(indexStart);
             for(Integer locationID : index.keySet()) {
                 rao.writeInt(locationID);
                 rao.writeInt(index.get(locationID).getStartByte());
                 rao.writeInt(index.get(locationID).getLength());
             }
-
         }
-
     }
 
     // 1. This first four bytes will contain the number of locations (bytes 0-3)
@@ -57,38 +54,31 @@ public class Locations implements Map<Integer, Location> {
     // 3. The next section of the file will contain the index (the index is 1692 bytes long.  It will start at byte 8 and end at byte 1699
     // 4. The final section of the file will contain the location records (the data). It will start at byte 1700
 
-
     static {
         try {
             ra = new RandomAccessFile("locations_rand.dat", "rwd");
-            int numLocations = ra.readInt();
+            ra.readInt();
             long locationStartPoint = ra.readInt();
-
             while(ra.getFilePointer() < locationStartPoint) {
                 int locationId = ra.readInt();
                 int locationStart = ra.readInt();
                 int locationLength = ra.readInt();
-
                 IndexRecord record = new IndexRecord(locationStart, locationLength);
                 index.put(locationId, record);
             }
-
         } catch(IOException e) {
             System.out.println("IOException in static initializer: " + e.getMessage());
         }
     }
 
     public Location getLocation(int locationId) throws IOException {
-
         IndexRecord record = index.get(locationId);
         ra.seek(record.getStartByte());
-        int id = ra.readInt();
+        ra.readInt();
         String description = ra.readUTF();
         String exits = ra.readUTF();
         String[] exitPart = exits.split(",");
-
         Location location = new Location(locationId, description, null);
-
         if(locationId != 0) {
             for(int i=0; i<exitPart.length; i++) {
                 System.out.println("exitPart = " + exitPart[i]);
@@ -98,7 +88,6 @@ public class Locations implements Map<Integer, Location> {
                 location.addExit(direction, destination);
             }
         }
-
         return location;
     }
 

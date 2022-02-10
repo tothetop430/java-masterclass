@@ -9,22 +9,18 @@ public class Location implements Serializable{
     private final String description;
     private final Map<String, Integer> exits;
 
-    private long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     public Location(int locationID, String description, Map<String, Integer> exits) {
         this.locationID = locationID;
         this.description = description;
         if(exits != null) {
-            this.exits = new LinkedHashMap<String, Integer>(exits);
+            this.exits = new LinkedHashMap<>(exits);
         } else {
-            this.exits = new LinkedHashMap<String, Integer>();
+            this.exits = new LinkedHashMap<>();
         }
         this.exits.put("Q", 0);
     }
-
-//    public void addExit(String direction, int location) {
-//        exits.put(direction, location);
-//    }
 
     public int getLocationID() {
         return locationID;
@@ -35,7 +31,7 @@ public class Location implements Serializable{
     }
 
     public Map<String, Integer> getExits() {
-        return new LinkedHashMap<String, Integer>(exits);
+        return new LinkedHashMap<>(exits);
     }
     protected void addExit(String direction, int location) {
         exits.put(direction, location);
