@@ -1,8 +1,6 @@
 package learning;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,6 +25,14 @@ public class Locations implements Map<Integer, Location> {
                     }
                 }
             }
+        }
+
+        Path path1 = FileSystems.getDefault().getPath("locations.dat");
+        Path path2 = FileSystems.getDefault().getPath("directions.dat");
+        try (ObjectOutputStream locFile = new ObjectOutputStream(new BufferedOutputStream(Files.newOutputStream(path1)));
+        ObjectOutputStream dirFile = new ObjectOutputStream(new BufferedOutputStream(Files.newOutputStream(path2)))) {
+            // Do Something Here
+            // Write Operation, write object (serializable) to a file
         }
     }
 
@@ -56,6 +62,22 @@ public class Locations implements Map<Integer, Location> {
                 System.out.println("Reading location " + loc + " : " + direction +
                         " : with destination : " + destination);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Path path1 = FileSystems.getDefault().getPath("locations.dat");
+        Path path2 = FileSystems.getDefault().getPath("directions.dat");
+        try (ObjectInputStream locFile = new ObjectInputStream(new BufferedInputStream(Files.newInputStream(path1)))) {
+            // Do Something
+            // Read file and get object (serializable)
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (ObjectInputStream dirFile = new ObjectInputStream(new BufferedInputStream(Files.newInputStream(path1)))) {
+            // Do Something
+            // Read file and get object (serializable)
         } catch (IOException e) {
             e.printStackTrace();
         }
