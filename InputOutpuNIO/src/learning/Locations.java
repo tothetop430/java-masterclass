@@ -1,5 +1,6 @@
 package learning;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -42,6 +43,20 @@ public class Locations implements Map<Integer, Location> {
                 locations.put(loc, new Location(loc, description, null));
             }
         } catch(IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedReader dirFile = Files.newBufferedReader(dirPath)) {
+            String input;
+            while ((input = dirFile.readLine()) != null) {
+                String[] data = input.split(",");
+                int loc = Integer.parseInt(data[0]);
+                String direction = data[1];
+                int destination = Integer.parseInt(data[2]);
+                System.out.println("Reading location " + loc + " : " + direction +
+                        " : with destination : " + destination);
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
