@@ -26,7 +26,6 @@ public class Locations implements Map<Integer, Location> {
                     }
                 }
             }
-
         }
     }
 
