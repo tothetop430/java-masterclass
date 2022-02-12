@@ -1,9 +1,6 @@
 package learning;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.RandomAccessFile;
+import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
@@ -35,19 +32,26 @@ public class Main {
             System.out.println("Negative Integer Buffer Written " + writtenBytes);
 
             RandomAccessFile ra = new RandomAccessFile("data.dat", "rwd");
-            byte[] b = new byte[bytes.length];
-            ra.read(b);
-            System.out.println(new String(b));
+            FileChannel readChannel = ra.getChannel();
+            byte[] stringBytes = new byte[bytes.length];
+            ByteBuffer strByteBuffer = ByteBuffer.wrap(stringBytes);
+            readChannel.read(strByteBuffer);
+            System.out.println("Reading bytes buffer as " + new String(stringBytes));
 
-            int num1 = ra.readInt();
-            int num2 = ra.readInt();
-            System.out.println("Number 1 " + num1);
-            System.out.println("Number 2 " + num2);
+//            RandomAccessFile ra = new RandomAccessFile("data.dat", "rwd");
+//            byte[] b = new byte[bytes.length];
+//            ra.read(b);
+//            System.out.println(new String(b));
+//
+//            int num1 = ra.readInt();
+//            int num2 = ra.readInt();
+//            System.out.println("Number 1 " + num1);
+//            System.out.println("Number 2 " + num2);
         }
 //        FileInputStream fileInputStream = new FileInputStream("data.txt");
 //        FileChannel fileChannel = fileInputStream.getChannel();
         Path filePath = FileSystems.getDefault().getPath("data.txt");
-        Files.write(filePath, "\nFile Line 5".getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+//        Files.write(filePath, "\nFile Line 5".getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
         List<String> lines = Files.readAllLines(filePath);
         for (String line: lines) {
             System.out.println(line);
