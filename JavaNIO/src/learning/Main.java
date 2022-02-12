@@ -33,10 +33,10 @@ public class Main {
 
             RandomAccessFile ra = new RandomAccessFile("data.dat", "rwd");
             FileChannel readChannel = ra.getChannel();
-            byte[] stringBytes = new byte[bytes.length];
-            ByteBuffer strByteBuffer = ByteBuffer.wrap(stringBytes);
-            readChannel.read(strByteBuffer);
-            System.out.println("Reading bytes buffer as " + new String(stringBytes));
+            bytes[0] = 'a';
+            byteBuffer.flip();
+            readChannel.read(byteBuffer);
+            System.out.println("Reading bytes buffer as " + new String(bytes));
 
 //            RandomAccessFile ra = new RandomAccessFile("data.dat", "rwd");
 //            byte[] b = new byte[bytes.length];
@@ -48,10 +48,14 @@ public class Main {
 //            System.out.println("Number 1 " + num1);
 //            System.out.println("Number 2 " + num2);
         }
+
 //        FileInputStream fileInputStream = new FileInputStream("data.txt");
 //        FileChannel fileChannel = fileInputStream.getChannel();
+
         Path filePath = FileSystems.getDefault().getPath("data.txt");
+
 //        Files.write(filePath, "\nFile Line 5".getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+
         List<String> lines = Files.readAllLines(filePath);
         for (String line: lines) {
             System.out.println(line);
