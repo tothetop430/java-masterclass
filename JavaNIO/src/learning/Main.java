@@ -3,6 +3,7 @@ package learning;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
@@ -32,6 +33,16 @@ public class Main {
             intBuffer.putInt(-9823); intBuffer.flip();
             writtenBytes = binChannel.write(intBuffer);
             System.out.println("Negative Integer Buffer Written " + writtenBytes);
+
+            RandomAccessFile ra = new RandomAccessFile("data.dat", "rwd");
+            byte[] b = new byte[bytes.length];
+            ra.read(b);
+            System.out.println(new String(b));
+
+            int num1 = ra.readInt();
+            int num2 = ra.readInt();
+            System.out.println("Number 1 " + num1);
+            System.out.println("Number 2 " + num2);
         }
 //        FileInputStream fileInputStream = new FileInputStream("data.txt");
 //        FileChannel fileChannel = fileInputStream.getChannel();
