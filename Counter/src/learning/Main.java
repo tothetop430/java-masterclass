@@ -19,7 +19,7 @@ public class Main {
 class Countdown {
     private int i;  // async variable
 //    private String color;
-    public void doCountdown() {
+    public synchronized void doCountdown() {
         String color;
         switch (Thread.currentThread().getName()) {
             case "Thread 1":
