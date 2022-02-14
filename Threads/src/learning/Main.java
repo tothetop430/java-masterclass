@@ -8,14 +8,14 @@ public class Main {
         Thread anotherThread = new AnotherThread();
         anotherThread.start();
 
-        Thread anotherThread2 = new Thread() {
+        new Thread() {
             @Override
             public void run() {
                 System.out.println("Hello from anonymous thread.");
             }
-        };
+        }.start();
 
-        anotherThread2.start();
+//        new Thread(() -> System.out.println("Hello from anonymous thread.")).start();
 
         System.out.println("Hello again from the main thread.");
     }
