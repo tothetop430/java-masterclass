@@ -1,7 +1,6 @@
 package learning;
 
 import java.io.Reader;
-import java.io.Writer;
 import java.util.Random;
 
 public class Main {
@@ -40,31 +39,31 @@ class Message {
     }
 }
 
-//class Writer implements Runnable {
-//    private Message message;
-//    public Writer(Message message) {
-//        this.message = message;
-//    }
-//    @Override
-//    public void run() {
-//        String[] messages = {
-//                "String 1",
-//                "String 2",
-//                "String 3",
-//                "String 4"
-//        };
-//        Random random = new Random();
-//        for (String mess : messages) {
-//            this.message.write(mess);
-//            try {
-//                Thread.sleep(random.nextInt(2000));
-//            } catch (InterruptedException ignored) {
-//
-//            }
-//        }
-//        this.message.write("Finished");
-//    }
-//}
+class Writer implements Runnable {
+    private Message message;
+    public Writer(Message message) {
+        this.message = message;
+    }
+    @Override
+    public void run() {
+        String[] messages = {
+                "String 1",
+                "String 2",
+                "String 3",
+                "String 4"
+        };
+        Random random = new Random();
+        for (String mess : messages) {
+            this.message.write(mess);
+            try {
+                Thread.sleep(random.nextInt(2000));
+            } catch (InterruptedException ignored) {
+
+            }
+        }
+        this.message.write("Finished");
+    }
+}
 
 //class Reader implements Runnable {
 //    private Message message;
