@@ -1,6 +1,5 @@
 package learning;
 
-import java.util.Random;
 
 public class Main {
 
@@ -39,7 +38,7 @@ class Message {
 }
 
 class Writer implements Runnable {
-    private Message message;
+    private final Message message;
     public Writer(Message message) {
         this.message = message;
     }
@@ -51,14 +50,8 @@ class Writer implements Runnable {
                 "String 3",
                 "String 4"
         };
-        Random random = new Random();
         for (String mess : messages) {
             this.message.write(mess);
-            try {
-                Thread.sleep(random.nextInt(2000));
-            } catch (InterruptedException ignored) {
-
-            }
         }
         this.message.write("Finished");
     }
@@ -71,13 +64,9 @@ class Reader implements Runnable {
     }
     @Override
     public void run() {
-        Random random = new Random();
         for (String latMessage = this.message.read(); !latMessage.equalsIgnoreCase("Finished");
             latMessage = this.message.read()) {
             System.out.println("Message Consumed " + latMessage);
-            try {
-                Thread.sleep(random.nextInt(2000));
-            } catch (InterruptedException ignored) {}
         }
     }
 }
