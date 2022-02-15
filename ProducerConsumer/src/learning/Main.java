@@ -46,27 +46,27 @@ class MyProducer implements Runnable {
     }
 }
 
-//class MyConsumer implements Runnable {
-//    private final List<String> buffer;
-//    private final String color;
-//    public MyConsumer(List<String> buffer, String color) {
-//        this.buffer = buffer;
-//        this.color = color;
-//    }
-//    @Override
-//    public void run() {
-//        while(true) {
-//            synchronized (buffer) {
-//                if (buffer.isEmpty()) {
-//                    continue;
-//                }
-//                if (buffer.get(0).equalsIgnoreCase("EOF")) {
-//                    System.out.println(color + "Exiting Consumer...");
-//                    break;
-//                } else {
-//                    System.out.println(color + "Reading... " + buffer.remove(0));
-//                }
-//            }
-//        }
-//    }
-//}
+class MyConsumer implements Runnable {
+    private final List<String> buffer;
+    private final String color;
+    public MyConsumer(List<String> buffer, String color) {
+        this.buffer = buffer;
+        this.color = color;
+    }
+    @Override
+    public void run() {
+        while(true) {
+            synchronized (buffer) {
+                if (buffer.isEmpty()) {
+                    continue;
+                }
+                if (buffer.get(0).equalsIgnoreCase("EOF")) {
+                    System.out.println(color + "Exiting Consumer...");
+                    break;
+                } else {
+                    System.out.println(color + "Reading... " + buffer.remove(0));
+                }
+            }
+        }
+    }
+}
