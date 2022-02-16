@@ -37,17 +37,22 @@ class MyProducer implements Runnable {
             for (String num : nums) {
                 System.out.println(color + "Adding... " + num);
                 this.lock.lock();
-                buffer.add(num);
-                this.lock.unlock();
-
+                try {
+                    buffer.add(num);
+                } finally {
+                    this.lock.unlock();
+                }
                 Thread.sleep(random.nextInt(1000));
             }
         } catch (InterruptedException ignored) {}
 
         System.out.println(color + "Adding EOF...");
         this.lock.lock();
-        buffer.add("EOF");
-        this.lock.unlock();
+        try {
+            buffer.add("EOF");
+        } finally {
+            this.lock.unlock();
+        }
     }
 }
 
@@ -63,19 +68,21 @@ class MyConsumer implements Runnable {
     @Override
     public void run() {
         while(true) {
-            this.lock.lock();
-            if (buffer.isEmpty()) {
-                this.lock.unlock();
-                continue;
+            if (lock.tryLock()) {
+                try {
+                    if (buffer.isEmpty()) {
+                        continue;
+                    }
+                    if (buffer.get(0).equalsIgnoreCase("EOF")) {
+                        System.out.println(color + "Exiting Consumer...");
+                        break;
+                    } else {
+                        System.out.println(color + "Reading... " + buffer.remove(0));
+                    }
+                } finally {
+                    this.lock.unlock();
+                }
             }
-            if (buffer.get(0).equalsIgnoreCase("EOF")) {
-                System.out.println(color + "Exiting Consumer...");
-                this.lock.unlock();
-                break;
-            } else {
-                System.out.println(color + "Reading... " + buffer.remove(0));
-            }
-            this.lock.unlock();
         }
     }
 }
