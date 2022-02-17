@@ -1,7 +1,10 @@
 package learning;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 public class Main {
 
+    private static final ReentrantLock lock = new ReentrantLock();
     public static void main(String[] args) {
         BankAccount bankAccount = new BankAccount("1234-50", 1000);
         new Thread(new Person1(bankAccount)).start();
@@ -15,12 +18,17 @@ public class Main {
         }
         @Override
         public void run() {
-            System.out.println("Person1: Depositing 300");
-            bankAccount.deposit(300);
-            System.out.println("Available Balance: " + bankAccount.getBalance());
-            System.out.println("Person1: Withdrawing 50");
-            bankAccount.withdraw(50);
-            System.out.println("Available Balance: " + bankAccount.getBalance());
+            lock.lock();
+            try {
+                System.out.println("Person1: Depositing 300");
+                bankAccount.deposit(300);
+                System.out.println("Available Balance: " + bankAccount.getBalance());
+                System.out.println("Person1: Withdrawing 50");
+                bankAccount.withdraw(50);
+                System.out.println("Available Balance: " + bankAccount.getBalance());
+            } finally {
+                lock.unlock();
+            }
         }
     }
 
@@ -31,12 +39,17 @@ public class Main {
         }
         @Override
         public void run() {
-            System.out.println("Person2: Depositing 203.75");
-            bankAccount.deposit(203.75);
-            System.out.println("Available Balance: " + bankAccount.getBalance());
-            System.out.println("Person2: Withdrawing 100");
-            bankAccount.withdraw(100);
-            System.out.println("Available Balance: " + bankAccount.getBalance());
+            lock.lock();
+            try {
+                System.out.println("Person2: Depositing 203.75");
+                bankAccount.deposit(203.75);
+                System.out.println("Available Balance: " + bankAccount.getBalance());
+                System.out.println("Person2: Withdrawing 100");
+                bankAccount.withdraw(100);
+                System.out.println("Available Balance: " + bankAccount.getBalance());
+            } finally {
+                lock.unlock();
+            }
         }
     }
 }
