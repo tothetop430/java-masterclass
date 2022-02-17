@@ -15,15 +15,11 @@ public class BankAccount {
     }
 
     public void deposit(double amount) {
-        synchronized (this) {
-            this.balance += amount;
-        }
+        this.balance += amount;
     }
 
     public void withdraw(double amount) {
-        synchronized (this) {
-            this.balance -= amount;
-        }
+        this.balance -= amount;
     }
 
     public String getAccountNumber() {
