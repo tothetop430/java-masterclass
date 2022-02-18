@@ -13,6 +13,13 @@ public class Main {
         }).start();
 
         new Thread(() -> System.out.println("Printing from Lambda Runnable")).start();
+
+        new Thread(() -> {
+            System.out.println("Multiple lines in a lambda call");
+            System.out.println("Line 1");
+            System.out.println("Line 2");
+            System.out.println("Line 3");
+        }).start();
     }
 }
 
