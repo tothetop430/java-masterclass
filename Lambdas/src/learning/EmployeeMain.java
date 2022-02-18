@@ -20,12 +20,14 @@ public class EmployeeMain {
         employeeList.add(emp4);
         employeeList.add(emp5);
 
-        Collections.sort(employeeList, new Comparator<Employee>() {
-            @Override
-            public int compare(Employee o1, Employee o2) {
-                return o1.getName().compareTo(o2.getName());
-            }
-        });
+//        Collections.sort(employeeList, new Comparator<Employee>() {
+//            @Override
+//            public int compare(Employee o1, Employee o2) {
+//                return o1.getName().compareTo(o2.getName());
+//            }
+//        });
+
+        Collections.sort(employeeList, (x, y) -> x.getName().compareTo(y.getName()));
 
         System.out.println("After Sorting Employees");
         for (Employee employee : employeeList) {
