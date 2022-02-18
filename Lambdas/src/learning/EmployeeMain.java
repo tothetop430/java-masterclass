@@ -3,6 +3,7 @@ package learning;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class EmployeeMain {
     public static void main(String[] args) {
@@ -31,10 +32,15 @@ public class EmployeeMain {
 
         System.out.println(sillyString);
 
-        for (Employee employee: employeeList) {
-            System.out.println("Employee Name: " + employee.getName());
-            new Thread(() -> System.out.println("Employee Age: " + employee.getAge())).start();
-        }
+//        for (Employee employee: employeeList) {
+//            System.out.println("Employee Name: " + employee.getName());
+//            System.out.println("Employee Age: " + employee.getAge());
+//        }
+
+        employeeList.forEach((emp) -> {
+            System.out.println("Employee Name: " + emp.getName());
+            System.out.println("Employee Age: " + emp.getAge());
+        });
     }
 
     public static String doStringStuff(UpperConcat uc, String s1, String s2) {
