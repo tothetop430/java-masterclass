@@ -21,10 +21,25 @@ public class Main {
 
         employeeList.sort(Comparator.comparing(Employee::getName));
 
+//        printEmployees(employeeList, "Employee with age greater than 21",
+//                employee -> employee.getAge() > 21);
+//        printEmployees(employeeList, "Employees with age less than or equal to 21",
+//                employee -> employee.getAge() <= 21);
+
         printEmployees(employeeList, "Employee with age greater than 21",
-                employee -> employee.getAge() > 21);
+                new Predicate<Employee>() {
+                    @Override
+                    public boolean test(Employee employee) {
+                        return employee.getAge() > 21;
+                    }
+                });
         printEmployees(employeeList, "Employees with age less than or equal to 21",
-                employee -> employee.getAge() <= 21);
+                new Predicate<Employee>() {
+                    @Override
+                    public boolean test(Employee employee) {
+                        return employee.getAge() <= 21;
+                    }
+                });
     }
 
     private static void printEmployees(List<Employee> list, String msg,
