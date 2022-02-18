@@ -2,7 +2,6 @@ package learning;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class EmployeeMain {
@@ -20,13 +19,6 @@ public class EmployeeMain {
         employeeList.add(emp4);
         employeeList.add(emp5);
 
-//        Collections.sort(employeeList, new Comparator<Employee>() {
-//            @Override
-//            public int compare(Employee o1, Employee o2) {
-//                return o1.getName().compareTo(o2.getName());
-//            }
-//        });
-
         Collections.sort(employeeList, (x, y) -> x.getName().compareTo(y.getName()));
 
         System.out.println("After Sorting Employees");
@@ -34,17 +26,15 @@ public class EmployeeMain {
             System.out.println(employee.getName());
         }
 
-//        String sillyString = doStringStuff(new UpperConcat() {
-//            @Override
-//            public String upperAndConcat(String s1, String s2) {
-//                return s1.toUpperCase().concat(s2.toUpperCase());
-//            }
-//        }, emp1.getName(), emp2.getName());
-
         String sillyString = doStringStuff((s1, s2) -> s1.toUpperCase().concat(s2.toUpperCase()),
                 emp1.getName(), emp2.getName());
 
         System.out.println(sillyString);
+
+        for (Employee employee: employeeList) {
+            System.out.println("Employee Name: " + employee.getName());
+            new Thread(() -> System.out.println("Employee Age: " + employee.getAge())).start();
+        }
     }
 
     public static String doStringStuff(UpperConcat uc, String s1, String s2) {
