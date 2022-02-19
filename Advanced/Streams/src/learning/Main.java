@@ -1,5 +1,6 @@
 package learning;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,5 +16,8 @@ public class Main {
                 .peek(System.out::println)
                 .filter(s -> s.compareTo("E") > 0)
                 .forEach(System.out::println);
+
+        ArrayList<String> w = new ArrayList<>(Arrays.asList("h"));
+        System.out.println(w);
     }
 }
