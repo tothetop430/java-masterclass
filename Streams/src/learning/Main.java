@@ -12,6 +12,7 @@ public class Main {
 
         aList.stream()
                 .map(String::toUpperCase)
+                .peek(System.out::println)
                 .filter(s -> s.compareTo("E") > 0)
                 .forEach(System.out::println);
     }
