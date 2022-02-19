@@ -39,6 +39,13 @@ public class Main {
 
         System.out.println(getName(getFirstName, employeeList.get(1)));
         System.out.println(getName(getLastName, employeeList.get(1)));
+
+        System.out.println("===============================");
+
+        Function<Employee, String> upperCase = employee -> employee.getName().toUpperCase();
+        Function<String, String> firstName = name -> name.substring(0, name.indexOf(" "));
+
+        System.out.println(upperCase.andThen(firstName).apply(emp1));
     }
 
     private static String getName(Function<Employee, String> getname, Employee employee) {
