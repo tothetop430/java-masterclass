@@ -33,6 +33,8 @@ public class Main {
 
         System.out.println("******************************");
 
+        System.out.println(anotherGibberish.replaceAll("e{1,2}", "E"));
+        System.out.println(anotherGibberish.replaceAll("e{2}", "E"));
         System.out.println(anotherGibberish.replaceAll("e{2,}", "E"));
     }
 }
