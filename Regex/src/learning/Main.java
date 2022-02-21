@@ -1,5 +1,8 @@
 package learning;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -36,5 +39,17 @@ public class Main {
         System.out.println(anotherGibberish.replaceAll("e{1,2}", "E"));
         System.out.println(anotherGibberish.replaceAll("e{2}", "E"));
         System.out.println(anotherGibberish.replaceAll("e{2,}", "E"));
+
+        System.out.println("******************************");
+
+        StringBuilder htmlText = new StringBuilder();
+        htmlText.append("<h2>ksdjfghsdkgj</h2>");
+        htmlText.append("<h3>kdsjfgdsg</h3>");
+        htmlText.append("<H2>sdkjfghsd</H3>");
+
+        String h2pattern = ".*<h2>.*";
+        Pattern pattern = Pattern.compile(h2pattern);
+        Matcher matcher = pattern.matcher(htmlText);
+        System.out.println(matcher.matches());
     }
 }
