@@ -15,8 +15,8 @@ public class Main {
         System.out.println("****************************************");
         System.out.println(anotherGibberish.matches("^abcDeee"));
         System.out.println(anotherGibberish.matches("^abcDeeeF123ghIabcDeee"));
-//        System.out.println(anotherGibberish.replaceAll("abcDeee$", "0END"));
-//        System.out.println(anotherGibberish.replaceAll("[abc]", "Z"));
-//        System.out.println(anotherGibberish.replaceAll("[abc][D]", "Z"));
+        System.out.println(anotherGibberish.replaceAll("abcDeee$", "0END"));
+        System.out.println(anotherGibberish.replaceAll("[abc]", "Z"));
+        System.out.println(anotherGibberish.replaceAll("[abc][D]", "Z"));
     }
 }
