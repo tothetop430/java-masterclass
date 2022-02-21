@@ -27,5 +27,8 @@ public class Main {
 
         System.out.println(anotherGibberish.replaceAll("\\D", "*D"));
         System.out.println("I Q W E R T Y".replaceAll("\\s", ""));
+
+        System.out.println(anotherGibberish.replaceAll("\\w", "x"));
+        System.out.println("Q W E R T Y".replaceAll("\\W", "x"));
     }
 }
