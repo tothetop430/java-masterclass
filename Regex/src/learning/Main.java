@@ -30,5 +30,9 @@ public class Main {
 
         System.out.println(anotherGibberish.replaceAll("\\w", "x"));
         System.out.println("Q W E R T Y".replaceAll("\\W", "x"));
+
+        System.out.println("******************************");
+
+        System.out.println(anotherGibberish.replaceAll("e{2,}", "E"));
     }
 }
