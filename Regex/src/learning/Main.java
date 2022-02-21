@@ -45,11 +45,23 @@ public class Main {
         StringBuilder htmlText = new StringBuilder();
         htmlText.append("<h2>ksdjfghsdkgj</h2>");
         htmlText.append("<h3>kdsjfgdsg</h3>");
-        htmlText.append("<H2>sdkjfghsd</H3>");
+        htmlText.append("<h2>sdkjfghsd</h2>");
 
         String h2pattern = ".*<h2>.*";
         Pattern pattern = Pattern.compile(h2pattern);
         Matcher matcher = pattern.matcher(htmlText);
         System.out.println(matcher.matches());
+
+        System.out.println("**************************");
+        String groupPattern = "(<h2>.*?</h2>)";
+        Pattern gPattern = Pattern.compile(groupPattern);
+        Matcher groupMatcher = gPattern.matcher(htmlText);
+        System.out.println(groupMatcher.matches());
+
+        groupMatcher.reset();
+
+        while(groupMatcher.find()) {
+            System.out.println("Occurrences : " + groupMatcher.group(1));
+        }
     }
 }
