@@ -18,5 +18,14 @@ public class Main {
         System.out.println(anotherGibberish.replaceAll("abcDeee$", "0END"));
         System.out.println(anotherGibberish.replaceAll("[abc]", "Z"));
         System.out.println(anotherGibberish.replaceAll("[abc][D]", "Z"));
+
+        System.out.println("harry".replaceAll("[Hh]arry", "Harry"));
+
+        System.out.println(anotherGibberish.replaceAll("[^eF]", "Q"));
+        System.out.println(anotherGibberish.replaceAll("[a-f]|[1-8]", "(replaced)"));
+        System.out.println(anotherGibberish.replaceAll("[a-f1-8]", "(replaced)"));
+
+        System.out.println(anotherGibberish.replaceAll("\\D", "*D"));
+        System.out.println("I Q W E R T Y".replaceAll("\\s", ""));
     }
 }
