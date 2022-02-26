@@ -7,16 +7,29 @@ class BankAccountTest {
 
     @Test
     void deposit() {
-        fail("Failing deposit method");
+        BankAccount bankAccount = new BankAccount("ABC", "DEF", 1000.00);
+        double balance = bankAccount.deposit(200.00, true);
+        assertEquals(1200.00, balance, 0);
     }
 
     @Test
     void withdraw() {
-        fail("Failing withdraw method");
+        BankAccount bankAccount = new BankAccount("ABC", "DEF", 1000.00);
+        double balance = bankAccount.withdraw(200.00, true);
+        assertEquals(800.00, balance, 0);
     }
 
     @Test
-    void getBalance() {
-        fail("Failing getBalance method");
+    void getBalance_deposit() {
+        BankAccount bankAccount = new BankAccount("ABC", "DEF", 1000.00);
+        bankAccount.deposit(200.00, true);
+        assertEquals(1200.00, bankAccount.getBalance(), 0);
+    }
+
+    @Test
+    void getBalance_withdraw() {
+        BankAccount bankAccount = new BankAccount("ABC", "DEF", 1000.00);
+        bankAccount.withdraw(200.00, true);
+        assertEquals(800.00, bankAccount.getBalance(), 0);
     }
 }
