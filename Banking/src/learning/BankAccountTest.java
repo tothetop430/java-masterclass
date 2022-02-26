@@ -24,9 +24,14 @@ class BankAccountTest {
     }
 
     @Test
-    void withdraw() {
-        double balance = bankAccount.withdraw(200.00, true);
-        assertEquals(800.00, balance, 0);
+    void withdraw_branch() {
+        double balance = bankAccount.withdraw(600.00, true);
+        assertEquals(400.00, balance, 0);
+    }
+
+    @Test
+    void withdraw_notBranch() {
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(600.00, false));
     }
 
     @Test
