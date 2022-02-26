@@ -39,11 +39,15 @@ class BankAccountTest {
 
     @Test
     public void isChecking_true() {
-
+        BankAccount bankAccount = new BankAccount("ABC", "DEF",
+                1000.00, BankAccount.CHECKING);
+        assertTrue(bankAccount.isChecking());
     }
 
     @Test
     public void isChecking_false() {
-
+        BankAccount bankAccount = new BankAccount("ABC", "DEF",
+                1000.00, BankAccount.SAVINGS);
+        assertFalse(bankAccount.isChecking());
     }
 }
