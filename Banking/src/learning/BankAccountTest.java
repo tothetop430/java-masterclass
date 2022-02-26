@@ -54,7 +54,7 @@ class BankAccountTest {
     }
 
     @AfterAll
-    static void shutDown() {
+    static void teardown() {
         System.out.println("Shutting down unit test cases.");
     }
 }
