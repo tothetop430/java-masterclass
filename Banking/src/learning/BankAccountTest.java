@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class BankAccountTest {
 
@@ -21,6 +23,13 @@ class BankAccountTest {
     void deposit() {
         double balance = bankAccount.deposit(200.00, true);
         assertEquals(1200.00, balance, 0);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"100,true,1100", "200,true,1200", "300,true,1300"})
+    void deposit(double amount, boolean branch, double result) {
+        double balance = bankAccount.deposit(amount, branch);
+        assertEquals(result, balance, 0);
     }
 
     @Test
