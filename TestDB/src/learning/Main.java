@@ -1,9 +1,6 @@
 package learning;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Main {
 
@@ -19,7 +16,13 @@ public class Main {
 //            statement.execute("UPDATE contacts SET phone=123454 WHERE name='Siddharth'");
 //            statement.execute("DELETE FROM contacts WHERE name='Mem2'");
 
-
+            statement.execute("SELECT * FROM contacts");
+            ResultSet results = statement.getResultSet();
+            while (results.next()) {
+                System.out.println(results.getString("name") + " "
+                        + results.getInt("phone") + " "
+                        + results.getString("email"));
+            }
         } catch (SQLException e) {
             System.out.println("Database Exception caught: " + e.getMessage());
         }
