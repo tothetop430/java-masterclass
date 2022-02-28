@@ -11,8 +11,8 @@ public class Main {
 	    try(Connection connection = DriverManager.getConnection("jdbc:sqlite:/Users/siddharth/Documents/Projects/java-masterclass/TestDB/testjava.db");
             Statement statement = connection.createStatement()) {
 
-            statement.execute("CREATE TABLE contacts (name TEXT, phone INTEGER, email TEXT)");
-
+            statement.execute("CREATE TABLE IF NOT EXISTS" +
+                    " contacts (name TEXT, phone INTEGER, email TEXT)");
         } catch (SQLException e) {
             System.out.println("Database Exception caught: " + e.getMessage());
         }
