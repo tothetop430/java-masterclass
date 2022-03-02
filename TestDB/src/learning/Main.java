@@ -21,6 +21,8 @@ public class Main {
                     "'mem1'" + ", " + "123" + ", " + "'mem1@email.com'" +
                     ")");
 
+            insertInto(statement, "new1", 1234, "new1@email.com");
+
 //            statement.execute("SELECT * FROM contacts");
 //            ResultSet results = statement.getResultSet();
             ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_NAME);
@@ -33,5 +35,11 @@ public class Main {
         } catch (SQLException e) {
             System.out.println("Database Exception caught: " + e.getMessage());
         }
+    }
+
+    public static void insertInto(Statement statement, String name, Integer phone, String email) throws SQLException {
+        statement.execute("INSERT INTO " + TABLE_NAME + " values(" +
+                "'" + name + "', " + phone + ", " + "'" + email + "'" +
+                ")");
     }
 }
