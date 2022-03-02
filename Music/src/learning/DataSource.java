@@ -1,6 +1,8 @@
 package learning;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DataSource {
 
@@ -25,5 +27,25 @@ public class DataSource {
     public final String COL_SONGS_TRACK = "track";
     public final String COL_SONGS_TITLE = "title";
     public final String COL_SONGS_ALBUM = "album";
+
+    public boolean openConnection() {
+        try {
+            this.connection = DriverManager.getConnection(connectionString);
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public void closeConnection() {
+        try {
+            this.connection.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
 }
