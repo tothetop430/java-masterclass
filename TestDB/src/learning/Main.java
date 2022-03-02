@@ -16,13 +16,16 @@ public class Main {
 //            statement.execute("UPDATE contacts SET phone=123454 WHERE name='Siddharth'");
 //            statement.execute("DELETE FROM contacts WHERE name='Mem2'");
 
-            statement.execute("SELECT * FROM contacts");
-            ResultSet results = statement.getResultSet();
+//            statement.execute("SELECT * FROM contacts");
+//            ResultSet results = statement.getResultSet();
+            ResultSet results = statement.executeQuery("SELECT * FROM contacts");
             while (results.next()) {
                 System.out.println(results.getString("name") + " "
                         + results.getInt("phone") + " "
                         + results.getString("email"));
             }
+
+            results.close();
         } catch (SQLException e) {
             System.out.println("Database Exception caught: " + e.getMessage());
         }
