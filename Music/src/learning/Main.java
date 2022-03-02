@@ -1,5 +1,7 @@
 package learning;
 
+import learning.model.DataSource;
+
 public class Main {
 
     public static void main(String[] args) {

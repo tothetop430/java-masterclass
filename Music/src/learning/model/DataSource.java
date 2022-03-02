@@ -1,4 +1,4 @@
-package learning;
+package learning.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
