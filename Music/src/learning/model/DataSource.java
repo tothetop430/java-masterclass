@@ -20,13 +20,13 @@ public class DataSource {
     public final String COL_ALBUM_NAME = "name";
     public final String COL_ALBUM_ARTIST = "artist";
 
-    public final String COL_ARTISTS_ID = "_id";
-    public final String COL_ARTISTS_NAME = "name";
+    public final String COL_ARTIST_ID = "_id";
+    public final String COL_ARTIST_NAME = "name";
 
-    public final String COL_SONGS_ID = "_id";
-    public final String COL_SONGS_TRACK = "track";
-    public final String COL_SONGS_TITLE = "title";
-    public final String COL_SONGS_ALBUM = "album";
+    public final String COL_SONG_ID = "_id";
+    public final String COL_SONG_TRACK = "track";
+    public final String COL_SONG_TITLE = "title";
+    public final String COL_SONG_ALBUM = "album";
 
     public boolean openConnection() {
         try {
