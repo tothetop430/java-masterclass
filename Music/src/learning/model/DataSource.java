@@ -57,7 +57,7 @@ public class DataSource {
         stringBuilder.append(TABLE_ARTISTS);
         if (orderby != ORDER_BY_NONE) {
             stringBuilder.append(" ORDER BY " + COL_ARTIST_ID);
-            stringBuilder.append(orderby == ORDER_BY_ASC ? "  ASC" : " DESC");
+            stringBuilder.append(orderby == ORDER_BY_DESC ? "  DESC" : " ASC");
         }
         try (Statement statement = this.connection.createStatement();
              ResultSet results = statement.executeQuery(stringBuilder.toString())) {
