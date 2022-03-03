@@ -94,4 +94,29 @@ public class DataSource {
         }
     }
 
+    public List<ArtistForSong> queryArtistForSong(String songName, int orderBy) {
+        String query = "SELECT songs.title AS \"Song Title\", albums.name AS \"Album Name\", artists.name AS \"Artist Name\" " +
+                "FROM songs INNER JOIN albums ON songs.album = albums._id " +
+                "INNER JOIN artists ON artists._id = albums.artist " +
+                "WHERE songs.title = '" + songName + "' " +
+                "ORDER BY songs.title";
+        StringBuilder sB = new StringBuilder(query);
+        if (orderBy != ORDER_BY_NONE) sB.append(orderBy == ORDER_BY_DESC ? " DESC" : " ASC");
+        List<ArtistForSong> artistForSongList = new ArrayList<>();
+        try (Statement statement = this.connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(sB.toString())) {
+            while(resultSet.next()) {
+                ArtistForSong artistForSong = new ArtistForSong();
+                artistForSong.setTitleTrack(resultSet.getString(1));
+                artistForSong.setAlbumName(resultSet.getString(2));
+                artistForSong.setArtistName(resultSet.getString(3));
+                artistForSongList.add(artistForSong);
+            }
+            return artistForSongList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }
