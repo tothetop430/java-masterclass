@@ -1,8 +1,8 @@
 package learning.model;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataSource {
 
@@ -45,6 +45,23 @@ public class DataSource {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
+        }
+    }
+
+    public List<Artist> queryArtists() {
+        try (Statement statement = this.connection.createStatement();
+             ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_ARTISTS)) {
+            List<Artist> artists = new ArrayList<>();
+            while (results.next()) {
+                Artist artist = new Artist();
+                artist.setId(results.getInt(COL_ARTIST_ID));
+                artist.setName(results.getString(COL_ARTIST_NAME));
+                artists.add(artist);
+            }
+            return artists;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
