@@ -53,6 +53,10 @@ public class Main {
                     ", Artist: " + artist.getArtistName());
         }
 
+
+        System.out.println("=== SONGS TABLE META DATA ===");
+        dataSource.querySongsMetaData();
+
         dataSource.closeConnection();
     }
 }
