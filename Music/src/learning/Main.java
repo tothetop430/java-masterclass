@@ -1,6 +1,9 @@
 package learning;
 
+import learning.model.Artist;
 import learning.model.DataSource;
+
+import java.util.List;
 
 public class Main {
 
@@ -8,11 +11,21 @@ public class Main {
         DataSource dataSource = new DataSource();
         if (!dataSource.openConnection()) {
             System.out.println("Failed to Open DataSource Connection!");
+            return;
         }
-        else {
-            System.out.println("Establised DataSource Connection");
+
+        List<Artist> artistList = dataSource.queryArtists();
+
+        if(artistList == null) {
+            System.out.println("Couldn't retrieve the artists");
             dataSource.closeConnection();
-            System.out.println("Finally Closed DataSource Connection");
+            return;
         }
+
+        for (Artist artist : artistList) {
+            System.out.println("Artist ID: " + artist.getId() + ", Name: " + artist.getName());
+        }
+
+        dataSource.closeConnection();
     }
 }
