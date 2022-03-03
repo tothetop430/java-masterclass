@@ -14,7 +14,7 @@ public class Main {
             return;
         }
 
-        List<Artist> artistList = dataSource.queryArtists(DataSource.ORDER_BY_DESC);
+        List<Artist> artistList = dataSource.queryArtists(DataSource.ORDER_BY_NONE);
 
         if(artistList == null) {
             System.out.println("Couldn't retrieve the artists");
@@ -24,6 +24,18 @@ public class Main {
 
         for (Artist artist : artistList) {
             System.out.println("Artist ID: " + artist.getId() + ", Name: " + artist.getName());
+        }
+
+        System.out.println("=== Album By Artist ===");
+
+        List<String> albums = dataSource.queryAlbumForArtist("Iron Maiden", DataSource.ORDER_BY_DESC);
+        if(albums == null) {
+            System.out.println("Couldn't retrieve the albums");
+            dataSource.closeConnection();
+            return;
+        }
+        for (String album : albums) {
+            System.out.println("Album: " + album);
         }
 
         dataSource.closeConnection();
