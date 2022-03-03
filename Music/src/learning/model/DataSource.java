@@ -119,4 +119,19 @@ public class DataSource {
         }
     }
 
+    public void querySongsMetaData() {
+        String query = "SELECT * FROM " + TABLE_SONGS;
+
+        try (Statement statement = this.connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query)) {
+            ResultSetMetaData metaData = resultSet.getMetaData();
+            int count = metaData.getColumnCount();
+            for (int i=1; i<=count; i++) {
+                System.out.format("Col %d in table is named as %s\n", i, metaData.getColumnName(i));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
