@@ -75,4 +75,23 @@ public class DataSource {
         }
     }
 
+    public List<String> queryAlbumForArtist(String artist, int orderBy) {
+        String query = "SELECT albums.name FROM albums INNER JOIN artists ON albums.artist = artists._id " +
+                "WHERE artists.name = '" + artist + "' " +
+                "ORDER BY albums.name";
+        StringBuilder sB = new StringBuilder(query);
+        if (orderBy != ORDER_BY_NONE) sB.append(orderBy == ORDER_BY_DESC ? " DESC" : " ASC");
+        List<String> albums = new ArrayList<>();
+        try (Statement statement = this.connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sB.toString())) {
+            while(resultSet.next()) {
+                albums.add(resultSet.getString(1));
+            }
+            return albums;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }
