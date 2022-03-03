@@ -28,6 +28,10 @@ public class DataSource {
     public final String COL_SONG_TITLE = "title";
     public final String COL_SONG_ALBUM = "album";
 
+    public static final int ORDER_BY_NONE = 0;
+    public static final int ORDER_BY_ASC = 1;
+    public static final int ORDER_BY_DESC = 2;
+
     public boolean openConnection() {
         try {
             this.connection = DriverManager.getConnection(connectionString);
@@ -48,9 +52,15 @@ public class DataSource {
         }
     }
 
-    public List<Artist> queryArtists() {
+    public List<Artist> queryArtists(int orderby) {
+        StringBuilder stringBuilder = new StringBuilder("SELECT * FROM ");
+        stringBuilder.append(TABLE_ARTISTS);
+        if (orderby != ORDER_BY_NONE) {
+            stringBuilder.append(" ORDER BY " + COL_ARTIST_ID);
+            stringBuilder.append(orderby == ORDER_BY_ASC ? "  ASC" : " DESC");
+        }
         try (Statement statement = this.connection.createStatement();
-             ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_ARTISTS)) {
+             ResultSet results = statement.executeQuery(stringBuilder.toString())) {
             List<Artist> artists = new ArrayList<>();
             while (results.next()) {
                 Artist artist = new Artist();
