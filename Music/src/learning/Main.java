@@ -14,7 +14,7 @@ public class Main {
             return;
         }
 
-        List<Artist> artistList = dataSource.queryArtists();
+        List<Artist> artistList = dataSource.queryArtists(DataSource.ORDER_BY_DESC);
 
         if(artistList == null) {
             System.out.println("Couldn't retrieve the artists");
