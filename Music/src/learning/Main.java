@@ -55,7 +55,12 @@ public class Main {
 
 
         System.out.println("=== SONGS TABLE META DATA ===");
-        dataSource.querySongsMetaData();
+        dataSource.queryMetaData(DataSource.TABLE_SONGS);
+
+        System.out.println("=== Row Count ===");
+        System.out.println(dataSource.getRowCount(DataSource.TABLE_ARTISTS));
+        System.out.println(dataSource.getRowCount(DataSource.TABLE_SONGS));
+        System.out.println(dataSource.getRowCount(DataSource.TABLE_ALBUMS));
 
         dataSource.closeConnection();
     }
