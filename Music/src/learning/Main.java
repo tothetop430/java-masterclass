@@ -65,6 +65,18 @@ public class Main {
         System.out.println("=== CREATE VIEW ===");
         dataSource.createViewArtistForSong();
 
+        System.out.println("=== QUERYING VIEW ===");
+        List<ArtistForSong> viewArtistForSongList = dataSource.queryViewArtistForSong();
+        if (viewArtistForSongList == null) {
+            System.out.println("Couldn't retrieve the artists");
+            dataSource.closeConnection();
+            return;
+        }
+        for (ArtistForSong artist : viewArtistForSongList) {
+            System.out.println("Song Name: " + artist.getTitleTrack() + ", Album: " + artist.getAlbumName() +
+                    ", Artist: " + artist.getArtistName());
+        }
+
         dataSource.closeConnection();
     }
 }
