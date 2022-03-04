@@ -12,9 +12,9 @@ public class DataSource {
             "/Users/siddharth/Documents/Projects/java-masterclass/Music/" +
             DB_NAME;
 
-    public final String TABLE_ALBUMS = "albums";
-    public final String TABLE_ARTISTS = "artists";
-    public final String TABLE_SONGS = "songs";
+    public static final String TABLE_ALBUMS = "albums";
+    public static final String TABLE_ARTISTS = "artists";
+    public static final String TABLE_SONGS = "songs";
 
     public final String COL_ALBUM_ID = "_id";
     public final String COL_ALBUM_NAME = "name";
@@ -119,8 +119,8 @@ public class DataSource {
         }
     }
 
-    public void querySongsMetaData() {
-        String query = "SELECT * FROM " + TABLE_SONGS;
+    public void queryMetaData(String tableName) {
+        String query = "SELECT * FROM " + tableName;
 
         try (Statement statement = this.connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query)) {
@@ -131,6 +131,18 @@ public class DataSource {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public int getRowCount(String tableName) {
+        String query = "SELECT COUNT(*) FROM " + tableName;
+        try (Statement statement = this.connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query)) {
+            int count = resultSet.getInt(1);
+            return count;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
         }
     }
 
