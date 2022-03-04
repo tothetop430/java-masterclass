@@ -146,4 +146,19 @@ public class DataSource {
         }
     }
 
+    public void createViewArtistForSong() {
+        String query = "CREATE VIEW IF NOT EXISTS artist_song AS "
+                + "SELECT songs.title AS \"Song Title\", albums.name AS \"Album Name\", artists.name AS \"Artist Name\" " +
+                "FROM songs INNER JOIN albums ON songs.album = albums._id " +
+                "INNER JOIN artists ON artists._id = albums.artist " +
+                "WHERE songs.title = 'Harry' " +
+                "ORDER BY songs.title";
+        try (Statement statement = this.connection.createStatement()) {
+            statement.execute(query);
+            System.out.println("VIEW CREATED");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
