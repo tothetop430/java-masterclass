@@ -62,6 +62,9 @@ public class Main {
         System.out.println(dataSource.getRowCount(DataSource.TABLE_SONGS));
         System.out.println(dataSource.getRowCount(DataSource.TABLE_ALBUMS));
 
+        System.out.println("=== CREATE VIEW ===");
+        dataSource.createViewArtistForSong();
+
         dataSource.closeConnection();
     }
 }
