@@ -161,4 +161,23 @@ public class DataSource {
         }
     }
 
+    public List<ArtistForSong> queryViewArtistForSong() {
+        String query = "SELECT * FROM artist_song";
+        List<ArtistForSong> artistForSongList = new ArrayList<>();
+        try (Statement statement = this.connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while(resultSet.next()) {
+                ArtistForSong artistForSong = new ArtistForSong();
+                artistForSong.setTitleTrack(resultSet.getString(1));
+                artistForSong.setAlbumName(resultSet.getString(2));
+                artistForSong.setArtistName(resultSet.getString(3));
+                artistForSongList.add(artistForSong);
+            }
+            return artistForSongList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }
