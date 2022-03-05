@@ -5,6 +5,7 @@ import learning.model.ArtistForSong;
 import learning.model.DataSource;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
@@ -73,6 +74,21 @@ public class Main {
             return;
         }
         for (ArtistForSong artist : viewArtistForSongList) {
+            System.out.println("Song Name: " + artist.getTitleTrack() + ", Album: " + artist.getAlbumName() +
+                    ", Artist: " + artist.getArtistName());
+        }
+
+        System.out.println("=== INPUT SQL INJECTION ===");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Song Name: ");
+        List<ArtistForSong> artistForSongList2 = dataSource.queryArtistForSong(scanner.nextLine(),
+                DataSource.ORDER_BY_DESC);
+        if (artistForSongList2 == null) {
+            System.out.println("Couldn't retrieve the artists");
+            dataSource.closeConnection();
+            return;
+        }
+        for (ArtistForSong artist : artistForSongList2) {
             System.out.println("Song Name: " + artist.getTitleTrack() + ", Album: " + artist.getAlbumName() +
                     ", Artist: " + artist.getArtistName());
         }
