@@ -41,7 +41,7 @@ public class Main {
 
         System.out.println("=== Artist By Song ===");
 
-        List<ArtistForSong> artistForSongList = dataSource.queryArtistForSong("Let Me Out",
+        List<ArtistForSong> artistForSongList = dataSource.queryArtistForSong("Go Your Own Way",
                 DataSource.ORDER_BY_DESC);
         if (artistForSongList == null) {
             System.out.println("Couldn't retrieve the artists");
